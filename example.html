@@ -1,0 +1,90 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Discogs Embed - examples</title>
+    <meta name="description" content="Discogs Embed - examples">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:300italic,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>  
+    <link rel="stylesheet" href="assets/css/discogs-embed.min.css">
+    <style type="text/css">
+    body{
+      -webkit-font-smoothing: antialiased;
+      font-family: Merriweather,Georgia,serif;
+    }
+    h1,h2,h3{
+      font-family: 'Roboto Slab','Helvetica Neue',sans-serif;
+      font-weight: 700;
+    }
+    h1{
+      margin: 50px 0;
+    }
+    .main{
+      max-width: 700px;
+    }
+    [data-discogs-embed]{
+      min-height:239px;
+    }
+    [data-discogs-embed].loading{
+      background-color:#eee;
+      position: relative;
+    }
+    [data-discogs-embed].loading:after{
+      content: 'Loading...';
+      font-style: italic;
+      font-size: 1.2em;
+      line-height:239px;
+      text-align:center;
+      width:100%;
+      position:absolute;
+      top: 0;
+    }
+    [data-discogs-embed].error{
+      background-color:#FFBBBB;
+    }    
+    .discogs-embed .duration{
+      font-family: 'Roboto Slab','Helvetica Neue',sans-serif;
+    }
+    footer{
+      margin-bottom:50px;
+    }
+    </style>
+  </head>
+<body>
+  <div class="container-fluid main">
+    <h1>Discog Embed - examples</h1>
+    <p>Here you can see some examples of embedded widgets, via following syntax:</p>
+    <pre><code>&lt;div data-discogs-embed data-release-type=&quot;releases&quot; data-id=&quot;:release_id&quot;&gt;&lt;/div&gt;</code></pre>    
+    <hr>
+
+    <div data-discogs-embed data-release-type="releases" data-id="84926"></div>
+    <hr>
+    
+    <div data-discogs-embed data-release-type="releases" data-id="36132"></div>
+    <hr>
+    
+    <div data-discogs-embed data-release-type="releases" data-id="1990898"></div>
+    <hr>    
+    
+    <div data-discogs-embed data-release-type="releases" data-id="435446"></div>
+    <hr>
+    
+    <div data-discogs-embed data-release-type="releases" data-id="626395"></div>
+    <hr>
+    
+    <footer>
+      2014 - <a href="https://github.com/moonwave99/discogs-embed">discogs-embed</a> was made with &#10084; at <a href="http://www.diegocaponera.com">MWLabs</a>.
+    </footer>
+  </div>
+  <script src="assets/js/discogs-embed.min.js"></script>
+  <script>
+    $(function(){
+      $('[data-discogs-embed]').each(function(index, element){
+        // throttles calls to discogs API to 1 call/s at most - you can better lazy load the widgets, as soon as they reach the viewport.
+        setTimeout(function(){ $(element).discogs() }, 1100 * index);
+      });
+    });
+  </script>
+</html>

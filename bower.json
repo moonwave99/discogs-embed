@@ -1,0 +1,24 @@
+{
+  "name": "discogs-embed",
+  "version": "0.0.0",
+  "authors": [
+    "moonwave99 <diego.caponera@gmail.com>"
+  ],
+  "description": "Embeddable widget for a Discogs music database entry",
+  "main": "discos.js",
+  "license": "MIT",
+  "homepage": "https://github.com/moonwave99/discogs-embed",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "underscore": "~1.7.0",
+    "normalize.css": "~3.0.2",
+    "handlebars": "~2.0.0"
+  }
+}

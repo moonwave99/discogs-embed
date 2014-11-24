@@ -1,0 +1,56 @@
+<div class="container-fluid discogs-embed">
+  <header>
+    <h2>
+      {{#each data.artists}}
+        <a href="https://www.discogs.com/artist/{{id}}" target="_blank">{{name}}</a>
+      {{/each}}
+      - <span>{{data.title}}</span>
+      <span class="year">{{data.year}}</span>
+    </h2>
+    <h3 class="media-info">
+      {{data.country}} / 
+      {{#if data.formats}}
+        {{#each data.formats}}
+          {{#each descriptions}}{{.}} {{/each}}
+        {{/each}}
+      {{/if}}
+      {{#if data.labels}}
+      / <a href="https://www.discogs.com/label/{{data.labels.[0].id}}" target="_blank">{{data.labels.[0].name}}</a> <span class="cat">({{data.labels.[0].catno}})</span>
+      {{/if}}
+    </h3>
+  </header>
+  <div class="row discogs-body{{#isCollapsed data.tracklist}} collapsed{{/isCollapsed}}">
+    <div class='col-sm-4'>
+      <a href="https://www.discogs.com/release/{{data.id}}" target="_blank">
+        <img src="{{#discogsImage data.images.[0].resource_url }}{{/discogsImage}}" class="img-responsive">
+      </a>
+    </div>
+    <div class='col-sm-8 tracklist'>
+      <ul class="list-unstyled">
+      {{#each data.tracklist}}
+        {{#isTrack .}}
+        <li class="track">
+          <span class="position">{{position}}</span>
+          {{#if artists}}
+            {{#each artists}}<a href="https://www.discogs.com/artist/{{id}}" target="_blank">{{name}}</a>{{/each}}
+            - 
+          {{/if}}
+          <span class="title">{{title}}</span>
+          <span class="duration">{{duration}}</span>
+        </li>
+        {{else}}
+        <li class="heading">{{title}}</li>
+        {{/isTrack}}
+      {{/each}}
+      </ul>
+    </div>
+  {{#isCollapsed data.tracklist}}
+  <div class="col-xs-12 more">
+    <a href="#">
+      <span class="more-label">more</span>
+      <span class="less-label">less</span>
+    </a>
+  </div>
+  {{/isCollapsed}}        
+  </div>
+</div>
