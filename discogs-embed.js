@@ -13,6 +13,7 @@
     api: {
       baseUrl: 'https://api.discogs.com'
     },
+    imageCacheUrl: '/images/discogs',
     ui: {
       collapseThreshold: 10
     }
@@ -26,6 +27,8 @@
   discogs = (function(options) {
  
     function discogs(handler, options) {
+      
+      var _this = this;
       // plugin variables.      
       this.handler = handler;
       
@@ -47,15 +50,15 @@
       
       // Register Handlebars helpers.
       Handlebars.registerHelper('discogsImage', function(image){
-        return new Handlebars.SafeString(image.replace('https://api.discogs.com/images', 'http://s.pixogs.com/image'));
+        return new Handlebars.SafeString(image.replace('https://api.discogs.com/images', _this.imageCacheUrl ));
       });
       
-      Handlebars.registerHelper('isCollapsed', function(tracklist, options) {
-        return tracklist.length > defaultOptions.ui.collapseThreshold ? options.fn(this) : null;
+      Handlebars.registerHelper('isCollapsed', function(tracklist, opts) {
+        return tracklist.length > _this.ui.collapseThreshold ? opts.fn(this) : null;
       });
             
-      Handlebars.registerHelper('isTrack', function(track, options) {
-        return track.type_ == 'track' ? options.fn(this) : options.inverse(this);
+      Handlebars.registerHelper('isTrack', function(track, opts) {
+        return track.type_ == 'track' ? opts.fn(this) : opts.inverse(this);
       });
       
       // Load data handlers.
