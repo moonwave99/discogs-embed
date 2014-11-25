@@ -9,9 +9,11 @@
   <h3 class="media-info">
     {{data.country}} / 
     {{#if data.formats}}
+      <ul class="list-inline formats">
       {{#each data.formats}}
-        {{#each descriptions}}{{.}} {{/each}}
+        {{#each descriptions}}<li>{{.}}</li>{{/each}}
       {{/each}}
+      </ul>
     {{/if}}
     {{#if data.labels}}
     / <a href="https://www.discogs.com/label/{{data.labels.[0].id}}" target="_blank">{{data.labels.[0].name}}</a> <span class="cat">({{data.labels.[0].catno}})</span>

@@ -8,6 +8,7 @@
     h2
       line-height 1.45
       vertical-align middle
+      margin 20px 0 10px 0
       a:hover
         color lighten($linkColor, 50%)
       .year
@@ -27,6 +28,13 @@
         color darken($mediumColor, 20%)
         &:hover
           color black
+      .formats
+        margin 0
+        display inline-block
+        li
+          padding 0
+          &:not(:last-child):after
+            content ',\00a0'
     
   .discogs-embed-body        
     margin-bottom 20px
@@ -34,6 +42,8 @@
       max-width 100%  
       margin-bottom 20px
     .tracklist    
+      ul
+        margin-bottom 0    
       .more
         text-align right
         margin-top 15px
