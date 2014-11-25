@@ -7,11 +7,6 @@ module.exports = (grunt) ->
   require('load-grunt-tasks')( grunt )
   
   grunt.initConfig  
-  
-    clean:
-      [
-        'assets'
-      ]
         
     less: 
       bootstrap: 
@@ -25,9 +20,8 @@ module.exports = (grunt) ->
     concat: 
       css: 
         src: [
-          'assets/css/bower_vendor.css'
           'assets/css/bootstrap.css'
-          'assets/css/discogs.css'
+          'assets/css/discogs-embed.css'
         ]
         dest: 'assets/css/discogs-embed.css'
   
@@ -45,13 +39,12 @@ module.exports = (grunt) ->
             './../../node_modules/nib/index.styl'
           ]
         files: 
-          'assets/css/discogs.css': '_styles/styl/app.styl'
+          'assets/css/discogs-embed.css': '_styles/styl/app.styl'
       
     uglify:
       app:
         files:
           'assets/js/discogs-embed.min.js': [
-            'assets/js/bower_vendor.js'
             'assets/js/templates/discogs-embed.js'
             'discogs-embed.js'
           ]
@@ -88,19 +81,16 @@ module.exports = (grunt) ->
           "less:bootstrap"
           "stylus"
           "concat"
-          "cssmin"
           "handlebars"
           "uglify"
         ]
 
   grunt.registerTask "build", [
-    "copy"
     "bower_concat"
     "less:bootstrap"
     "stylus"
     "concat"
     "cssmin"
     "handlebars"
-    "uglify"    
-    "clean"
+    "uglify"
   ]
