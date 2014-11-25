@@ -6,8 +6,8 @@
   ],
   "description": "A simple way to include data from Discogs into you blog/website.",
   "main": [
-    "dist/discogs.embed.min.js",
-    "dist/discogs.embed.min.css"
+    "./dist/discogs-embed.js",
+    "./dist/discogs-embed.css"
   ],
   "license": "MIT",
   "homepage": "https://github.com/moonwave99/discogs-embed",
