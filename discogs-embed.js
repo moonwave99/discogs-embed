@@ -45,6 +45,7 @@
       // Assign templates.
       this.templates = window.discogsEmbed.templates;
       
+      // Register Handlebars helpers.
       Handlebars.registerHelper('discogsImage', function(image){
         return new Handlebars.SafeString(image.replace('https://api.discogs.com/images', 'http://s.pixogs.com/image'));
       });
@@ -57,7 +58,7 @@
         return track.type_ == 'track' ? options.fn(this) : options.inverse(this);
       });
       
-      // Load data handlers
+      // Load data handlers.
       var _this = this;
       this._done = function(result, status, jqXHR){
         console.log(result.data);
@@ -76,8 +77,8 @@
     
     discogs.prototype.expand = function(event){
       event.preventDefault();
-      var $discogsBody = this.$discogsBody || (this.$discogsBody = this.handler.find('.discogs-body'));
-      $discogsBody.toggleClass('collapsed', !$discogsBody.is('.collapsed'));
+      var $tracklist = this.$tracklist || (this.$tracklist = this.handler.find('.tracklist'));
+      $tracklist.toggleClass('collapsed', !$tracklist.is('.collapsed')).find('ul').toggleClass('ellipsed', !!$tracklist.is('.collapsed'));
     }    
     
     discogs.prototype.reload = function(event){
@@ -95,10 +96,11 @@
  
     // Main method.
     discogs.prototype.init = function() {
-      var _this = this;      
+      var _this = this;
       this.discogsData = $.extend(true, defaultDiscogsOptions, this.handler.data());
       this.handler.on('click', '.more', this.expand);
       this.handler.on('click', '.reload', this.reload);
+      this.handler.addClass('discogs-embed');
       this.load();      
     };
  

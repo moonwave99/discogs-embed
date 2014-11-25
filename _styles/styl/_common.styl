@@ -4,75 +4,86 @@
     color $linkColor
     text-decoration underline
     transition color .2s ease-in-out
-  h2
-    line-height 1.45
-    vertical-align middle
-    a:hover
-      color lighten($linkColor, 50%)
-    .year
-      font-style italic
-      float right
-      font-size .7em
-      line-height 2.45
+  .discogs-embed-header
+    h2
+      line-height 1.45
       vertical-align middle
-      display inline-block
-      color $lightColor
-  h3
-    font-size 1em
-    font-weight 400
-    color $mediumColor
-    margin-bottom 20px
-    a
-      color darken($mediumColor, 20%)
-      &:hover
-        color $mediumColor
+      a:hover
+        color lighten($linkColor, 50%)
+      .year
+        font-style italic
+        float right
+        font-size .7em
+        line-height 2.45
+        vertical-align middle
+        display inline-block
+        color $lightColor
+    h3
+      font-size 1em
+      font-weight 400
+      color $mediumColor
+      margin-bottom 20px
+      a
+        color darken($mediumColor, 20%)
+        &:hover
+          color black
     
-  .discogs-body
-    .more
-      text-align right
-      margin-top 15px
-      font-size .8em
-      .more-label
-        display none
-        &:after
-          content '…'
-      
-    &.collapsed
-      .more
-        .more-label
-          display inline
-        .less-label
-          display none
-      .tracklist
-        overflow hidden
-        max-height $widgetCollapsedHeight
-        &:after
-          content ''
-          height 70%
-          position absolute
-          width 100%
-          bottom 0
-          background linear-gradient(top, rgba(255,255,255,.0), white)
-        
+  .discogs-embed-body        
+    margin-bottom 20px
     img
       max-width 100%  
       margin-bottom 20px
-    .tracklist
-      max-height 9999px
-      transition max-height 1s ease-in
-      .heading
-        margin-bottom 10px
-        font-style italic
-        font-weight bold
-        font-size .9em
-        &:not(:first-child)
-          margin-top 30px
-      .track
-        line-height 1.45
-        .position
-          margin-right 5px
-          font-weight bold
+    .tracklist    
+      .more
+        text-align right
+        margin-top 15px
+        font-size .8em
+        .more-label
+          display none
           &:after
-            content '.'
-        .duration
-          float right
+            content '…'    
+      ul
+        max-height 9999px
+        margin-bottom 0
+        &.ellipsed:after
+          content ''
+          height $widgetCollapsedHeight
+          position absolute
+          width 100%
+          top 0
+          background linear-gradient(top, rgba(255,255,255,.0), white)
+          
+        .heading
+          margin-bottom 10px
+          font-style italic
+          font-weight bold
+          font-size .9em
+          &:not(:first-child)
+            margin-top 30px
+        .track
+          line-height 1.8
+          .position
+            margin-right 5px
+            font-weight bold
+            &:after
+              content '.'
+          .duration
+            float right        
+      
+      &.collapsed
+        ul
+          overflow hidden
+          max-height $widgetCollapsedHeight
+        .more
+          .more-label
+            display inline
+          .less-label
+            display none
+            
+  .discogs-embed-footer
+    font-size .9em
+    font-style italic
+    color darken($mediumColor, 20%)
+    img
+      width 16px
+      height 16px

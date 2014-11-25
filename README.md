@@ -5,4 +5,4 @@ A simple way to include data from [discogs](https://www.discogs.com) into you bl
 ## TODO
 
 - provide a cache proxy for the images;
-- CSS transition event hook.
+- fix bower thing.
