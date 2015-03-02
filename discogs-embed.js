@@ -48,11 +48,7 @@
       // Assign templates.
       this.templates = window.discogsEmbed.templates;
       
-      // Register Handlebars helpers.
-      Handlebars.registerHelper('discogsImage', function(image){
-        return new Handlebars.SafeString(image.replace('https://api.discogs.com/images', _this.imageCacheUrl ));
-      });
-      
+      // Register Handlebars helpers.      
       Handlebars.registerHelper('isCollapsed', function(tracklist, opts) {
         return tracklist.length > _this.ui.collapseThreshold ? opts.fn(this) : null;
       });
@@ -64,7 +60,7 @@
       // Load data handlers.
       var _this = this;
       this._done = function(result, status, jqXHR){
-        console.log(result.data);
+        result.data.image = _this.imageCacheUrl + '/' + data.id + '.jpeg';
         _this.handler.toggleClass('error', false).html(_this.templates.main({ data : result.data }));        
       }
       

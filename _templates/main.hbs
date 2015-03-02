@@ -23,7 +23,7 @@
 <section class="row discogs-embed-body">
   <div class='col-sm-4'>
     <a href="https://www.discogs.com/release/{{data.id}}" target="_blank">
-      <img src="{{#discogsImage data.images.[0].resource_url }}{{/discogsImage}}" class="img-responsive">
+      <img src="{{ data.image }}" class="img-responsive">
     </a>
   </div>
   <div class='col-sm-8 tracklist{{#isCollapsed data.tracklist}} collapsed{{/isCollapsed}}'>
