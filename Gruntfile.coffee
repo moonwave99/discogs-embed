@@ -21,9 +21,9 @@ module.exports = (grunt) ->
       css: 
         src: [
           'assets/css/bootstrap.css'
-          'assets/css/discogs-embed.css'
+          'dist/discogs-embed.css'
         ]
-        dest: 'assets/css/discogs-embed.css'
+        dest: 'assets/css/discogs-embed-deps.css'
   
     bower_concat: 
       all: 
@@ -39,12 +39,12 @@ module.exports = (grunt) ->
             './../../node_modules/nib/index.styl'
           ]
         files: 
-          'assets/css/discogs-embed.css': '_styles/styl/app.styl'
+          'dist/discogs-embed.css': '_styles/styl/app.styl'
       
     uglify:
       app:
         files:
-          'assets/js/discogs-embed.min.js': [
+          'dist/discogs-embed.min.js': [
             'assets/js/templates/discogs-embed.js'
             'discogs-embed.js'
           ]
@@ -52,7 +52,7 @@ module.exports = (grunt) ->
     cssmin:
       combine:
         files:
-          'assets/css/discogs-embed.min.css': ['assets/css/discogs-embed.css']
+          'dist/discogs-embed-deps.min.css' : ['assets/css/discogs-embed-deps.css']
           
     handlebars:
       compile:
