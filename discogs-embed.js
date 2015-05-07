@@ -16,11 +16,11 @@
     imageCacheUrl: '/images/discogs',
     ui: {
       collapseThreshold: 10
-    },
-    discogsIcon: 'http://static.discogs.com/images/favicon.ico'
+    }
   };
   
   defaultDiscogsOptions = {
+    icon: 'http://static.discogs.com/images/favicon.ico',
     releaseType: 'releases',
     id: 1990898
   };
@@ -62,7 +62,7 @@
       var _this = this;
       this._done = function(result, status, jqXHR){
         result.data.image = _this.imageCacheUrl + '/' + result.data.id + '.jpeg';
-        _this.handler.toggleClass('error', false).html(_this.templates.main({ data : result.data, icon: options.discogsIcon })).addClass('loaded');
+        _this.handler.toggleClass('error', false).html(_this.templates.main({ data : result.data, icon: defaultDiscogsOptions.icon })).addClass('loaded');
       }
       
       this._fail = function(){
