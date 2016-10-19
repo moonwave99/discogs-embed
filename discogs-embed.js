@@ -126,4 +126,4 @@
     // Display items (if hidden) and return jQuery object to maintain chainability.
     return this.show();
   };
-})(jQuery);
+})(jQuery, Handlebars);

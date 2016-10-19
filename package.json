@@ -1,8 +1,8 @@
 {
   "name": "discogs-embed",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Embeddable widget for a Discogs music database entry",
-  "main": "discogs.js",
+  "main": "discogs-embed.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
