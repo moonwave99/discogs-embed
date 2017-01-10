@@ -13,6 +13,7 @@
     api: {
       baseUrl: 'https://api.discogs.com'
     },
+    token: null,
     imageCacheUrl: '/images/discogs',
     ui: {
       collapseThreshold: 10
@@ -88,7 +89,8 @@
 
     discogs.prototype.load = function(){
       this.handler.toggleClass('loading', true);
-      return $.getJSON( this.api.baseUrl + '/' + this.discogsData.releaseType + '/' + this.discogsData.id + '?callback=?')
+      var token = this.token ? ('token=' + this.token + '&') : '';
+      return $.getJSON( this.api.baseUrl + '/' + this.discogsData.releaseType + '/' + this.discogsData.id + '?' + token + 'callback=?')
         .done(this._done)
         .fail(this._fail)
         .always(this._always);
