@@ -11,7 +11,8 @@
   // Plugin default options.
   defaultOptions = {
     api: {
-      baseUrl: 'https://api.discogs.com'
+      baseUrl: 'https://api.discogs.com',
+      extension: ''
     },
     token: null,
     imageCacheUrl: '/images/discogs',
@@ -63,11 +64,19 @@
       var _this = this;
       this._done = function(result, status, jqXHR){
         result.data.image = _this.imageCacheUrl + '/' + result.data.id + '.jpeg';
-        _this.handler.toggleClass('error', false).html(_this.templates.main({ data : result.data, icon: defaultDiscogsOptions.icon })).addClass('loaded');
+        _this.handler
+          .toggleClass('error', false)
+          .html(_this.templates.main({
+            data: result.data,
+            icon: defaultDiscogsOptions.icon
+          }))
+          .addClass('loaded');
       }
 
       this._fail = function(){
-        _this.handler.toggleClass('error', true).html(_this.templates.error({ id : _this.discogsData.id }));
+        _this.handler.toggleClass('error', true).html(_this.templates.error({
+          id : _this.discogsData.id
+        }));
       }
 
       this._always = function(){
@@ -79,7 +88,10 @@
     discogs.prototype.expand = function(event){
       event.preventDefault();
       var $tracklist = this.$tracklist || (this.$tracklist = this.handler.find('.tracklist'));
-      $tracklist.toggleClass('collapsed', !$tracklist.is('.collapsed')).find('ul').toggleClass('ellipsed', !!$tracklist.is('.collapsed'));
+      $tracklist
+        .toggleClass('collapsed', !$tracklist.is('.collapsed'))
+        .find('ul')
+        .toggleClass('ellipsed', !!$tracklist.is('.collapsed'));
     }
 
     discogs.prototype.reload = function(event){
@@ -88,9 +100,21 @@
     }
 
     discogs.prototype.load = function(){
+      var requestUrl = [
+        this.api.baseUrl,
+        this.discogsData.releaseType,
+        this.discogsData.id
+      ].join('/');
+      var data = {};
+      if (this.token) {
+        data.token = this.token;
+      }
+      if (this.requestFormat == 'jsonp') {
+        data.callback = '?'
+      }
+
       this.handler.toggleClass('loading', true);
-      var token = this.token ? ('token=' + this.token + '&') : '';
-      return $.getJSON( this.api.baseUrl + '/' + this.discogsData.releaseType + '/' + this.discogsData.id + '?' + token + 'callback=?')
+      return $.getJSON(requestUrl  + this.api.extension, data)
         .done(this._done)
         .fail(this._fail)
         .always(this._always);
