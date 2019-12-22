@@ -1,6 +1,6 @@
 {
   "name": "discogs-embed",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Embeddable widget for a Discogs music database entry",
   "main": "discogs-embed.js",
   "scripts": {
