@@ -22,7 +22,6 @@
   };
 
   defaultDiscogsOptions = {
-    icon: 'https://s.discogs.com/images/favicon-16x16.png',
     releaseType: 'releases',
     id: 1990898
   };
@@ -67,8 +66,7 @@
         _this.handler
           .toggleClass('error', false)
           .html(_this.templates.main({
-            data: result.data,
-            icon: defaultDiscogsOptions.icon
+            data: result.data
           }))
           .addClass('loaded');
       }
